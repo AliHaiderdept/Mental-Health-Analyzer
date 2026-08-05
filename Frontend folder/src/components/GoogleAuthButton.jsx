@@ -43,7 +43,7 @@ function decodeJwt(token) {
     );
 }
 
-export default function GoogleAuthButton({ label = "Continue with Google", onSuccess }) {
+export default function GoogleAuthButton({ label = "Sign in with Google", onSuccess }) {
     const buttonRef = useRef(null);
     const [loadError, setLoadError] = useState("");
     const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
@@ -86,7 +86,7 @@ export default function GoogleAuthButton({ label = "Continue with Google", onSuc
                     theme: "outline",
                     size: "large",
                     width: buttonRef.current.offsetWidth || 320,
-                    text: "continue_with",
+                    text: "signin_with",
                 });
             })
             .catch(() => {
@@ -101,8 +101,13 @@ export default function GoogleAuthButton({ label = "Continue with Google", onSuc
     if (!clientId || loadError) {
         return (
             <button className="google-fallback-button" type="button" onClick={handleFallbackAuth}>
-                <span aria-hidden="true">G</span>
-                {label}
+                <img
+                    src="https://i.pinimg.com/236x/94/c9/5e/94c95e858aa55a5af3a1b4edcc9e9fa4.jpg"
+                    alt="Google"
+                    className="google-icon"
+                    aria-hidden="true"
+                />
+                <span className="google-fallback-text">{label}</span>
             </button>
         );
     }

@@ -753,9 +753,79 @@ input[type="text"],input[type="email"],input[type="password"],input[type="tel"],
   .progress-bar{transition:width .9s ease}
 }
 
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+	.disorder-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.modern-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.analysis-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.split-section { grid-template-columns: 1fr; gap: 18px; }
+	.quiz-panel { flex-direction: column; align-items: flex-start; gap: 18px; }
+	.quiz-button { align-self: stretch; width: 100%; }
+	.home-hero { padding: 48px 12px 36px; }
+	.home-hero h1 { font-size: clamp(2rem, 6vw, 4rem); }
+}
+
+@media (max-width: 640px) {
+	/* Navbar: show toggle and collapse menu */
+	.navbar { left: 0; transform: none; width: 100%; padding: 8px 12px; border-radius: 0; bottom: 0; }
+	.navbar-brand { padding-left: 12px; font-size: 1.2rem; }
+	.navbar-toggle { display: inline-flex; }
+	.navbar-menu { display: none; position: absolute; left: 12px; right: 12px; bottom: 64px; flex-direction: column; gap: 8px; background: rgba(255,255,255,0.96); padding: 12px; border-radius: 12px; box-shadow: 0 12px 28px rgba(16,103,142,0.12); }
+	.navbar-menu.is-open { display: flex; }
+	.navbar-menu a { display:block; width:100%; padding:12px 14px; border-radius:8px; }
+
+	/* Stack content and full-width cards */
+	.container { width: calc(100% - 24px); margin: 18px auto; }
+	.disorder-grid { grid-template-columns: 1fr; }
+	.analysis-options { grid-template-columns: 1fr; }
+	.modern-grid { grid-template-columns: 1fr; }
+	.info-layout { display: block; }
+	.info-toc-wrap { position: static; top: auto; }
+	.info-toc { margin-bottom: 12px; position: relative; }
+	.info-main { grid-auto-rows: auto; }
+	.quiz-card, .quiz-panel, .home-section { padding: 16px; }
+	.info-hero { padding: 48px 14px; min-height: auto; }
+	.home-hero h1 { font-size: clamp(1.8rem, 8vw, 3rem); }
+	.hero-copy { padding: 0 8px; }
+	.btn { min-height:42px; padding:0 14px; }
+}
+
+/* Small tweaks for very large screens to keep components scalable */
+@media (min-width: 1400px) {
+	.container { width: 1200px; }
+	.home-hero h1 { font-size: clamp(3rem, 6vw, 6rem); }
+}
+
 .auth-container{
 	display:flex;
 	justify-content:center;
+}
+.google-fallback-button{
+	display:inline-flex;
+	align-items:center;
+	gap:12px;
+	padding:8px 12px;
+	border-radius:999px;
+	background:var(--surface);
+	border:1px solid var(--border);
+	color:var(--text);
+	font-weight:800;
+	cursor:pointer;
+	box-shadow:0 10px 24px rgba(16,103,142,.06);
+}
+.google-fallback-button:focus{outline:2px solid rgba(22,134,217,.18);outline-offset:2px}
+.google-icon{
+	width:36px;
+	height:36px;
+	border-radius:50%;
+	object-fit:cover;
+	border:1px solid rgba(0,0,0,0.06);
+}
+
+/* Smaller icon on very small screens */
+@media (max-width: 420px){
+	.google-icon{width:30px;height:30px}
+	.google-fallback-button{gap:8px;padding:8px 10px}
 }
 .auth-card{
 	width:min(100%,440px);
@@ -849,17 +919,12 @@ input[type="text"],input[type="email"],input[type="password"],input[type="tel"],
 	border-color:rgba(124,92,255,.28);
 	box-shadow:0 14px 28px rgba(32,36,55,.12);
 }
-.google-fallback-button span{
-	display:inline-flex;
-	align-items:center;
-	justify-content:center;
-	width:24px;
-	height:24px;
-	border-radius:50%;
-	background:var(--surface);
-	color:#4285f4;
-	border:1px solid #e4e8ef;
-	font-weight:900;
+.google-fallback-button .google-fallback-text{
+	color: #000;
+	font-weight:400;
+	font-style:normal;
+	text-transform:none;
+	font-size:1rem;
 }
 .form-note{
 	margin:12px 0 0;
